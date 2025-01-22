@@ -1,0 +1,90 @@
+
+.login-page {
+  display: flex; /* Sử dụng Flexbox */
+  justify-content: center; /* Căn giữa ngang */
+  align-items: center; /* Căn giữa dọc */
+  min-height: 100vh; /* Chiều cao tối thiểu bằng 100% chiều cao màn hình */
+  background: linear-gradient(135deg, #ea5837, #a777e3); /* Màu nền gradient */
+  padding: 20px; /* Thêm padding để tránh bị dính sát */
+  box-sizing: border-box; /* Bao gồm padding vào kích thước */
+}
+
+/* CSS cho form đăng nhập */
+.login-page .login_register_wrap {
+  width: 100%;
+  max-width: 700px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: fadeIn 0.5s ease-in-out;
+  padding: 50px; /* Khoảng cách bên trong */
+}
+
+.login-page .padding_eight_all {
+  padding: 50px;
+}
+
+.login-page .heading_s1 h3 {
+  text-align: center;
+  color: #333;
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.login-page form .form-group {
+  margin-bottom: 20px;
+}
+
+.login-page form .form-control {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 18px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.login-page form .form-control:focus {
+  border-color: #6e8efb;
+  box-shadow: 0 0 8px rgba(110, 142, 251, 0.5);
+  outline: none;
+}
+
+.login-page .btn-signup {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  border: none;
+  padding: 15px 25px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-page .btn-signup:hover {
+  background: linear-gradient(135deg, #5a7af3, #905ecb);
+}
+
+.login-page .form-note {
+  font-size: 16px;
+  margin-top: 20px;
+  color: #555;
+}
+
+.login-page .form-note a {
+  color: #6e8efb;
+  text-decoration: none;
+}
+
+.login-page .form-note a:hover {
+  text-decoration: underline;
+}
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  font-weight: bold;
+}
