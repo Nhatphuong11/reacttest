@@ -46,8 +46,8 @@ body {
   /* Sidebar */
   #sidebar {
     grid-area: sidebar;
-    background-color: #263043;
-    color: white;
+    background: linear-gradient(135deg, #fb6e7c, #a777e3);
+    color: rgb(225, 211, 211);
     padding-top: 20px;
     transition: all 0.3s ease-in-out;
     overflow-y: hidden; /* Ẩn thanh cuộn */
@@ -91,7 +91,7 @@ body {
   .sidebar-list-item a {
     display: flex;
     align-items: center;
-    color: #9e9ea4;
+    color: #eff4f0;
   }
   
   .sidebar-list-item a .icon {
@@ -168,6 +168,7 @@ body {
     .sidebar-title .close_icon {
       display: block;
     }
+
   }
   
   @media screen and (max-width: 768px) {

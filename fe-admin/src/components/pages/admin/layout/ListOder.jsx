@@ -22,10 +22,10 @@ function ListOrders() {
   if (status === "loading") return <p>Loading orders...</p>;
   if (status === "failed") return <p>Error: {error}</p>;
 
-  // Logic để lọc các đơn hàng theo searchTerm
+ 
   const filteredOrders = orders.filter((order) => {
-    const username = order.username || ""; // Gán chuỗi rỗng nếu undefined
-    const name = order.name || ""; // Gán chuỗi rỗng nếu undefined
+    const username = order.username || ""; 
+    const name = order.name || ""; 
   
     return (
       username.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -72,7 +72,7 @@ function ListOrders() {
       console.log("Updating status for Order ID:", orderId);
       console.log("New Status:", newStatus);
   
-      await dispatch(updateOrderStatus({ id: orderId, status: newStatus })).unwrap(); // Chỉnh sửa 'id' thay vì 'orderId'
+      await dispatch(updateOrderStatus({ id: orderId, status: newStatus })).unwrap(); 
       alert("Cập nhật trạng thái thành công!");
       dispatch(fetchOrders());
     } catch (error) {
@@ -135,7 +135,7 @@ function ListOrders() {
                   edit status
                 </Button>
                 <Button danger
-                  onClick={() => handleDeleteOrder(order.id, order.status)} // Đảm bảo chỉ truyền order.id
+                  onClick={() => handleDeleteOrder(order.id, order.status)} 
                   className="delete-btn"
                 >
                   Delete

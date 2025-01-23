@@ -1,15 +1,14 @@
 
 .register-page {
-    display: flex; /* Sử dụng Flexbox */
-    justify-content: center; /* Căn giữa ngang */
-    align-items: center; /* Căn giữa dọc */
-    min-height: 100vh; /* Chiều cao tối thiểu bằng 100% chiều cao màn hình */
-    background: linear-gradient(135deg, #ea5837, #a777e3); /* Màu nền gradient */
-    padding: 20px; /* Thêm padding để tránh bị dính sát */
-    box-sizing: border-box; /* Bao gồm padding vào kích thước */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh; 
+    background: linear-gradient(135deg, #ea5837, #a777e3); 
+    padding: 20px; 
+    box-sizing: border-box; 
   }
-  
-  /* CSS cho form đăng nhập */
+
   .register-page .login_register_wrap {
     width: 100%;
     max-width: 700px;
@@ -18,7 +17,7 @@
     box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     animation: fadeIn 0.5s ease-in-out;
-    padding: 50px; /* Khoảng cách bên trong */
+    padding: 50px; 
   }
   
   .register-page .padding_eight_all {
@@ -53,19 +52,18 @@
   }
   
   .register-page .btn-signup {
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
-    border: none;
-    padding: 15px 25px;
-    color: white;
+    display: inline-block;
+    width: 70%;
+    padding: 12px 20px;
+    font-size: 1rem;
     font-weight: bold;
-    font-size: 18px;
-    border-radius: 10px;
+    color: #fff;
+    background-color: #ee197c; 
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .register-page .btn-signup:hover {
-    background: linear-gradient(135deg, #5a7af3, #905ecb);
+    transition: all 0.3s ease-in-out;
+    text-align: center;
   }
   
   .register-page .form-note {
@@ -88,3 +86,28 @@
     margin-top: 5px;
     font-weight: bold;
   }
+
+.btn-signup {
+  display: inline-block;
+  width: 50%;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #dc66b2; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+}
+
+.btn-signup:hover {
+  background-color: #ed078d; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-login:disabled {
+  background-color: #bdc3c7; 
+  cursor: not-allowed;
+}

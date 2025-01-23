@@ -1,11 +1,10 @@
 const { cateGorys } = require('../mockdata');
 
-// Lấy danh sách danh mục
+
 const getCategories = (req, res) => {
   res.json(cateGorys);
 };
 
-// Thêm danh mục mới
 const addCategory = (req, res) => {
   const { categoryName } = req.body;
 
@@ -26,7 +25,6 @@ const addCategory = (req, res) => {
   });
 };
 
-// Cập nhật danh mục
 const updateCategory = (req, res) => {
   const { categoryid } = req.params;
   const { categoryName } = req.body;
@@ -43,7 +41,6 @@ const updateCategory = (req, res) => {
   });
 };
 
-// Xóa danh mục
 const deleteCategory = (req, res) => {
   const { categoryid } = req.params;
 

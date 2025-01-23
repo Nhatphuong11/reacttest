@@ -1,18 +1,14 @@
-// orderController.js
-const { users } = require("../mockdata"); // Giả sử bạn lấy từ dữ liệu mock
+const { users } = require("../mockdata"); 
 const { cateGorys } = require("../mockdata");
-// Lấy danh sách đơn hàng của người dùng
 const getAllOrders = (req, res) => {
   const allOrders = users.flatMap((user) => {
     return user.order.map((order) => {
-      // Tìm thông tin category từ categories bằng category id
       const category = cateGorys.find((e) => e.categoryid === order.categoryid);
-      
       return {
         userId: user.id,
         username: user.username,
         ...order,
-        categoryName: category ? category.categoryName : 'Uncategorized', // Thêm categoryName vào đơn hàng
+        categoryName: category ? category.categoryName : 'Uncategorized', 
       };
     });
   });
@@ -48,10 +44,8 @@ const addOrder = (req, res) => {
   
 };
 const updateOrderStatus = (req, res) => {
-  const { id } = req.params; // Lấy ID đơn hàng từ URL
-  const { status } = req.body; // Lấy trạng thái mới từ body request
-
-  // Tìm user chứa đơn hàng
+  const { id } = req.params; 
+  const { status } = req.body; 
   const user = users.find((user) =>
     user.order.some((order) => order.id === parseInt(id))
   );
@@ -64,7 +58,7 @@ const updateOrderStatus = (req, res) => {
   const order = user.order.find((order) => order.id === parseInt(id));
   order.status = status;
 
-  res.status(200).json(order); // Trả về đơn hàng đã cập nhật
+  res.status(200).json(order); 
 };
 
 

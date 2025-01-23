@@ -1,7 +1,5 @@
-// dashboardController.js
 const { users, products, cateGorys } = require("../mockdata");
 
-// Tổng quan dashboard
 const getDashboardSummary = (req, res) => {
   const totalUsers = users.length;
   const totalAdmins = users.filter((user) => user.role === "admin").length;
@@ -16,7 +14,7 @@ const getDashboardSummary = (req, res) => {
   });
 };
 
-// Thống kê sản phẩm theo danh mục
+
 const getProductStatistics = (req, res) => {
   const productStats = cateGorys.map((category) => {
     const count = products.filter(
@@ -31,7 +29,7 @@ const getProductStatistics = (req, res) => {
   res.json(productStats);
 };
 
-// Thống kê đơn hàng theo danh mục
+
 const getOrderStatistics = (req, res) => {
   const orderStats = users.reduce((stats, user) => {
     user.order.forEach((order) => {

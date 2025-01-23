@@ -34,12 +34,12 @@ function ListPosts() {
   if (status === "loading") return <p>Loading posts...</p>;
   if (status === "failed") return <p>Error: {error}</p>;
 
-  // Lọc bài viết theo từ khóa
+
   const filteredPosts = posts.filter((post) =>
     (post.name || "").toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Phân trang
+ 
   const currentPosts = filteredPosts.slice(
     (currentPage - 1) * postsPerPage,
     currentPage * postsPerPage
@@ -101,7 +101,6 @@ function ListPosts() {
   return (
     <div className="list-post-container">
       <h2 className="list-post-title">Post List</h2>
-      {/* Thanh tìm kiếm */}
       <div className="search-bar">
         <Input
           placeholder="Search by post name..."
@@ -109,15 +108,11 @@ function ListPosts() {
           onChange={handleSearch}
         />
       </div>
-
-      {/* Nút thêm bài viết */}
       <div className="add-post-btn">
         <Button type="primary" onClick={() => setIsModalOpen(true)}>
           Add Post
         </Button>
       </div>
-
-      {/* Bảng */}
       <div className="table-wrapper">
         <table>
           <thead>
@@ -160,8 +155,6 @@ function ListPosts() {
           </tbody>
         </table>
       </div>
-
-      {/* Phân trang */}
       <Pagination
         current={currentPage}
         pageSize={postsPerPage}
@@ -169,8 +162,6 @@ function ListPosts() {
         onChange={(page) => setCurrentPage(page)}
         className="pagination"
       />
-
-      {/* Modal thêm bài viết */}
       <Modal
         title="Add New Post"
         visible={isModalOpen}
@@ -212,8 +203,6 @@ function ListPosts() {
           style={{ marginBottom: "10px" }}
         />
       </Modal>
-
-      {/* Modal chỉnh sửa bài viết */}
       <Modal
         title="Edit Post"
         visible={isEditModalOpen}

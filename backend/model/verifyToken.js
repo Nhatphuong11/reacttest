@@ -1,13 +1,13 @@
 const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
-  const token = req.header('Authorization')?.split(' ')[1]; // Lấy token từ header Authorization
+  const token = req.header('Authorization')?.split(' ')[1]; 
 
   if (!token) return res.status(401).send("Access denied. No token provided.");
 
   try {
-    const decoded = jwt.verify(token, "secret_key"); // Kiểm tra tính hợp lệ của token
-    req.user = decoded; // Gắn thông tin người dùng vào req.user
+    const decoded = jwt.verify(token, "secret_key"); 
+    req.user = decoded; 
     next();
   } catch (err) {
     res.status(400).send("Invalid token.");

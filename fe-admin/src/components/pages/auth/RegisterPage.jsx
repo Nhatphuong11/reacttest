@@ -5,7 +5,7 @@ import { register } from "../../redux/authSlice";
 import { fetchUsers } from "../../redux/userSlice";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
+import "./RegisterPage.css"
 export default function RegisterPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

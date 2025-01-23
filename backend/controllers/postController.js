@@ -1,29 +1,21 @@
-// productController.js
-const { posts } = require('../mockdata');  // Mock data sản phẩm
+const { posts } = require('../mockdata');  
 const { cateGorys } = require('../mockdata');
-// Lấy danh sách sản phẩm
 const getPosts = (req, res) => {
   const post = posts.map((post) => {
-    // Tìm category bằng categoryid
     const category = cateGorys.find((e) => e.categoryid === post.categoryid);
     return {
       ...post,
-      categoryName: category ? category.categoryName : 'Uncategorized',  // Lấy categoryName thay vì name
+      categoryName: category ? category.categoryName : 'Uncategorized',  
     };
   });
   res.json(post);
 };
 
-// Thêm sản phẩm mới
 const addPosts = (req, res) => {
   const { name, image, content, categoryid } = req.body;
-
-  // Kiểm tra nếu có thiếu thông tin
   if (!name || !image || !content || !categoryid) {
     return res.status(400).send('Name, image, and content are required');
   }
-
-  // Tạo sản phẩm mới
   const newPosts = { 
     id: posts.length + 1, 
     name, 
@@ -32,7 +24,7 @@ const addPosts = (req, res) => {
     categoryid
   };
   
-  posts.push(newPosts);  // Thêm vào mock data
+  posts.push(newPosts);  
 
   res.status(201).json({
     message: 'Product added successfully',
@@ -48,8 +40,6 @@ const updatePosts = (req, res) => {
   const post = posts.find((p) => p.id === parseInt(id));
 
   if (!post) return res.status(404).send('Product not found');
-
-  // Cập nhật thông tin sản phẩm
   post.name = name || post.name;
   post.image = image || post.image;
   post.content = content || post.content;
@@ -60,7 +50,6 @@ const updatePosts = (req, res) => {
   });
 };
 
-// Xóa sản phẩm
 const deletePosts = (req, res) => {
   const { id } = req.params;
 
@@ -68,7 +57,7 @@ const deletePosts = (req, res) => {
 
   if (postIndex === -1) return res.status(404).send('Product not found');
 
-  posts.splice(postIndex, 1);  // Xóa sản phẩm khỏi mock data
+  posts.splice(postIndex, 1); 
 
   res.json({
     message: 'Product deleted successfully',

@@ -1,11 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { users } = require('../mockdata');
-// Mock users (database)
 
-
-// Đăng ký người dùng
-// Cập nhật mockData khi người dùng đăng ký
 const register = (req, res) => {
   const { username, password, email, role } = req.body;
   if (!role) return res.status(400).send('Role is required');
@@ -15,12 +11,9 @@ const register = (req, res) => {
   if (emailExists) return res.status(400).send('Email already exists');
   
   // Mã hóa mật khẩu
-  const hashedPassword = bcrypt.hashSync(password, 10);
-  
-  // Thêm người dùng mới vào mockData
+  const hashedPassword = bcrypt.hashSync(password, 10); 
   const newUser = { id: users.length + 1, username, email, password: hashedPassword, role };
-  users.push(newUser);  // Cập nhật mockData
-
+  users.push(newUser);  
   res.status(201).json({
     message: 'User registered successfully',
     user: newUser
@@ -37,18 +30,16 @@ const login = (req, res) => {
     return res.status(401).json({ message: "Invalid email or password" });
   }
 
-  // Kiểm tra mật khẩu đã mã hóa
   const isMatch = bcrypt.compareSync(password, user.password);
   if (!isMatch) {
     return res.status(401).json({ message: "Invalid email or password" });
   }
 
-  // Tạo JWT token với role
   const token = jwt.sign({ id: user.id, role: user.role }, "secret_key", { expiresIn: "10h" });
 
   res.json({
     token,
-    role: user.role,  // Đảm bảo trả về role ở đây
+    role: user.role,  
     message: "Login successful",
   });
 };

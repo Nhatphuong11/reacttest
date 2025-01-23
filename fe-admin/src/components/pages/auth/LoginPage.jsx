@@ -1,14 +1,15 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"; // Dùng axios để gọi API
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../redux/authSlice";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import "./LoginPage.css";
-
-function LoginPage() {
+import "./LoginPage.css"
+export default function LoginPage() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { loading, error } = useSelector((state) => state.auth);
 
-  // Xác định validation schema với Yup
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Email không hợp lệ")
@@ -18,41 +19,22 @@ function LoginPage() {
       .required("Mật khẩu không được để trống"),
   });
 
-  // Sử dụng Formik để quản lý form
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     validationSchema,
-    onSubmit: async (values, { setSubmitting, setErrors }) => {
-      try {
-        const response = await axios.post(
-          "http://localhost:2001/api/auth/login",
-          values
-        );
-        const { token, role } = response.data;
-
-        // Lưu token và role vào localStorage
-        localStorage.setItem("token", token);
-        localStorage.setItem("role", role);
-
-        // Điều hướng dựa trên vai trò (role)
+    onSubmit: async (values) => {
+      const result = await dispatch(login(values));
+      console.log("Login result:", result);
+      if (login.fulfilled.match(result)) {
+        const { role } = result.payload;
         if (role === "admin") {
-          navigate("/admin"); // Chuyển đến trang admin
-        } else if (role === "user") {
-          navigate("/"); // Chuyển đến trang user
-        }
-      } catch (err) {
-        // Kiểm tra nếu lỗi do email/mật khẩu không đúng
-        if (err.response && err.response.status === 401) {
-          setErrors({ submit: "Email hoặc mật khẩu không đúng." });
+          navigate("/admin"); // Điều hướng đến trang admin nếu là admin
         } else {
-          // Xử lý lỗi khác
-          setErrors({ submit: "Đăng nhập thất bại. Vui lòng thử lại." });
+          navigate("/"); // Điều hướng đến trang chủ nếu là user
         }
-      } finally {
-        setSubmitting(false); // Kết thúc trạng thái đang gửi
       }
     },
   });
@@ -62,18 +44,17 @@ function LoginPage() {
       <div className="login_register_wrap">
         <div className="padding_eight_all">
           <div className="heading_s1">
-            <h3>Đăng nhập</h3>
+            <h3>Đăng nhập</h3>
           </div>
           <form onSubmit={formik.handleSubmit}>
             <div className="form-group">
               <input
-                type="text"
+                type="email"
                 className="form-control"
                 name="email"
                 placeholder="Enter Your Email"
                 value={formik.values.email}
                 onChange={formik.handleChange}
-                
               />
               {formik.touched.email && formik.errors.email && (
                 <div className="error-message" style={{ marginTop: "10px" }}>{formik.errors.email}</div>
@@ -87,26 +68,26 @@ function LoginPage() {
                 placeholder="Password"
                 value={formik.values.password}
                 onChange={formik.handleChange}
-             
               />
               {formik.touched.password && formik.errors.password && (
                 <div className="error-message" style={{ marginTop: "10px" }}>{formik.errors.password}</div>
               )}
             </div>
-            {formik.errors.submit && (
-              <div className="error-message">{formik.errors.submit}</div>
-            )}
             <div className="form-group">
               <button
                 type="submit"
-                className="btn btn-signup"
-                disabled={formik.isSubmitting}
-                style={{ marginTop: "10px" }}
+                className="btn btn-login"
+                disabled={loading}
               >
-                {formik.isSubmitting ? "Logging in..." : "Login"}
+                {loading ? "Logging in..." : "Login"}
               </button>
             </div>
           </form>
+          {error && (
+            <div className="error-message">
+              {typeof error === "string" ? error : error.message || "An error occurred"}
+            </div>
+          )}
           <div className="form-note text-center">
             Don't have an account? <Link to={"/register"}>Register</Link>
           </div>
@@ -115,5 +96,3 @@ function LoginPage() {
     </div>
   );
 }
-
-export default LoginPage;

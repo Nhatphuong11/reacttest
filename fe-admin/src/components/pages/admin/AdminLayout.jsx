@@ -14,7 +14,6 @@ import "./AdminCSS.css"
 function AdminLayout() {
   return (
     <div style={{ display: "flex" }}>
-      {/* Sidebar */}
       <aside id='sidebar' className={"sidebar-responsive"}>
       <div className='sidebar-title'>
         <div className='sidebar-brand' style={{ padding: "20px" }}>
@@ -61,11 +60,8 @@ function AdminLayout() {
         </li>
       </ul>
     </aside>
-
-
-      {/* Content */}
       <main style={{ flex: 1, padding: "20px" }}>
-        <Outlet /> {/* Render các route con */}
+        <Outlet /> 
       </main>
     </div>
   );

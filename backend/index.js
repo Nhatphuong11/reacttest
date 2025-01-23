@@ -12,8 +12,8 @@ const port = 2001;
 
 app.use(cors());
 app.use(express.json());
-app.use('/api/auth', authRoutes); // Đăng ký authRoutes
-app.use('/api', userRoutes);     // Đăng ký userRoutes 
+app.use('/api/auth', authRoutes); 
+app.use('/api', userRoutes);     
 app.use('/api', productRoutes);
 app.use('/api', postRoutes);
 app.use('/api', orderRoutes);

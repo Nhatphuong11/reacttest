@@ -2,30 +2,28 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchUsers,
-  // updateUser,
   deleteUser,
   updateUserRole,
 } from "../../../redux/userSlice";
-import { Button,Pagination } from "antd";
+import { Button, Pagination } from "antd";
 import "./ListCustomer.css";
 
 function ListCustomer() {
   const dispatch = useDispatch();
   const { users, status, error } = useSelector((state) => state.user);
-
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("usersname");
   const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage] = useState(5); 
+  const [usersPerPage] = useState(5);
   useEffect(() => {
-     dispatch(fetchUsers());
-   }, [dispatch])
+    dispatch(fetchUsers());
+  }, [dispatch]);
   if (status === "loading") return <p>Loading users...</p>;
   if (status === "failed") return <p>Error: {error}</p>;
   const handleDelete = async (id) => {
     try {
       await dispatch(deleteUser(id));
-      dispatch(fetchUsers()); // Tải lại danh sách sau khi xóa
+      dispatch(fetchUsers());
     } catch (error) {
       console.error("Failed to delete user:", error);
     }
@@ -33,7 +31,7 @@ function ListCustomer() {
   const handleUpdateRole = async (userId, newRole) => {
     try {
       await dispatch(updateUserRole({ userId, role: newRole }));
-      dispatch(fetchUsers()); 
+      dispatch(fetchUsers());
     } catch (error) {
       console.error("Failed to update user role:", error);
     }
@@ -45,11 +43,11 @@ function ListCustomer() {
   const handleSort = (field) => {
     setSortBy(field);
   };
- 
+
   const filteredUsers = users.filter((user) =>
     (user.username || "").toLowerCase().includes(searchTerm.toLowerCase())
   );
-  // Sắp xếp người dùng theo tên, email hoặc role
+ 
   const sortedUsers = filteredUsers.sort((a, b) => {
     if (sortBy === "usersname")
       return (a.username || "").localeCompare(b.username || "");
@@ -57,7 +55,6 @@ function ListCustomer() {
     return (a.role || "").localeCompare(b.role || "");
   });
 
-  // Phân trang
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
@@ -74,8 +71,6 @@ function ListCustomer() {
   return (
     <div className="list-customer-container">
       <h2 className="list-customer-title">User List</h2>
-
-      {/* Search bar */}
       <div className="search-bar">
         <input
           type="text"
@@ -84,8 +79,6 @@ function ListCustomer() {
           onChange={handleSearch}
         />
       </div>
-
-      {/* Table */}
       <div className="table-wrapper">
         <table>
           <thead>
@@ -144,14 +137,13 @@ function ListCustomer() {
         </table>
       </div>
 
-      {/* Pagination */}
       <Pagination
-  current={currentPage}
-  pageSize={usersPerPage}
-  total={filteredUsers.length}
-  onChange={handlePageChange}
-  className="ant-pagination"
-/>
+        current={currentPage}
+        pageSize={usersPerPage}
+        total={filteredUsers.length}
+        onChange={handlePageChange}
+        className="ant-pagination"
+      />
     </div>
   );
 }

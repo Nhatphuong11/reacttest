@@ -38,7 +38,6 @@ function ListProduct() {
     (product.name || "").toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Phân trang
   const currentProducts = filteredProducts.slice(
     (currentPage - 1) * productsPerPage,
     currentPage * productsPerPage
@@ -100,8 +99,6 @@ function ListProduct() {
   return (
     <div className="list-product-container">
       <h2 className="list-product-title">Product List</h2>
-
-      {/* Search bar */}
       <div className="search-bar">
         <Input
           placeholder="Search by product name..."
@@ -109,15 +106,11 @@ function ListProduct() {
           onChange={handleSearch}
         />
       </div>
-
-      {/* Add Product Button */}
       <div className="add-product-btn">
         <Button type="primary" onClick={() => setIsModalOpen(true)}>
           Add Product
         </Button>
       </div>
-
-      {/* Table */}
       <div className="table-wrapper">
         <table>
           <thead>
@@ -158,8 +151,6 @@ function ListProduct() {
           </tbody>
         </table>
       </div>
-
-      {/* Pagination */}
       <Pagination
         current={currentPage}
         pageSize={productsPerPage}
@@ -167,8 +158,6 @@ function ListProduct() {
         onChange={(page) => setCurrentPage(page)}
         className="pagination"
       />
-
-      {/* Add Product Modal */}
       <Modal
         title="Add New Product"
         visible={isModalOpen}
@@ -216,8 +205,6 @@ function ListProduct() {
           type="number"
         />
       </Modal>
-
-      {/* Edit Product Modal */}
       <Modal
         title="Edit Product"
         visible={isEditModalOpen}

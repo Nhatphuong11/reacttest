@@ -27,12 +27,12 @@ function ListCategory() {
   if (status === "loading") return <p>Loading categories...</p>;
   if (status === "failed") return <p>Error: {error}</p>;
 
-  // Lọc danh mục theo từ khóa tìm kiếm
+
   const filteredCategories = categories.filter((category) =>
     (category.categoryName || "").toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Phân trang
+  
   const currentCategories = filteredCategories.slice(
     (currentPage - 1) * categoriesPerPage,
     currentPage * categoriesPerPage
@@ -91,8 +91,6 @@ function ListCategory() {
   return (
     <div className="list-category-container">
       <h2 className="list-category-title">Category List</h2>
-
-      {/* Search bar */}
       <div className="search-bar">
         <Input
           placeholder="Search by category name..."
@@ -100,15 +98,11 @@ function ListCategory() {
           onChange={handleSearch}
         />
       </div>
-
-      {/* Add Category Button */}
       <div className="add-category-btn">
         <Button type="primary" onClick={() => setIsModalOpen(true)}>
           Add Category
         </Button>
       </div>
-
-      {/* Table */}
       <div className="table-wrapper">
         <table>
           <thead>
@@ -139,8 +133,6 @@ function ListCategory() {
           </tbody>
         </table>
       </div>
-
-      {/* Pagination */}
       <Pagination
         current={currentPage}
         pageSize={categoriesPerPage}
@@ -149,7 +141,6 @@ function ListCategory() {
         className="pagination"
       />
 
-      {/* Add Category Modal */}
       <Modal
         title="Add New Category"
         visible={isModalOpen}
@@ -164,8 +155,6 @@ function ListCategory() {
           }
         />
       </Modal>
-
-      {/* Edit Category Modal */}
       <Modal
         title="Edit Category"
         visible={isEditModalOpen}

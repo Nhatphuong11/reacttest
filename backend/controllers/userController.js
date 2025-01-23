@@ -1,20 +1,17 @@
 const jwt = require("jsonwebtoken");
 const { users } = require("../mockdata");
 const getUsers = (req, res) => {
-  // Kiểm tra nếu người dùng là admin
   if (req.user.role !== "admin") {
     return res.status(403).send("You are not authorized to view this data");
   }
-  console.log("Users data:", users); // Log danh sách người dùng
+  console.log("Users data:", users); 
   res.json(users);
 };
 
-// Cập nhật người dùng
+
 const updateUser = (req, res) => {
   const { id } = req.params;
   const { username, email, role } = req.body;
-
-  // Kiểm tra nếu người dùng là admin
   console.log("Current user:", req.user);
   if (req.user.role !== "admin") {
     return res.status(403).send("You are not authorized to update this data");
@@ -42,14 +39,12 @@ const updateUserRole = (req, res) => {
   const user = users.find((u) => u.id === parseInt(id));
   if (!user) return res.status(404).send("User not found");
 
-  user.role = role || user.role;  // Update the role
+  user.role = role || user.role;  
   res.json({ message: "User role updated successfully", user });
 };
 // Xóa người dùng
 const deleteUser = (req, res) => {
   const { id } = req.params;
-
-  // Kiểm tra nếu người dùng là admin
   if (req.user.role !== "admin") {
     return res.status(403).send("You are not authorized to delete this data");
   }
@@ -59,7 +54,7 @@ const deleteUser = (req, res) => {
 
   users.splice(userIndex, 1);
 
-  res.json({ message: "User deleted successfully", users }); // Trả danh sách người dùng sau khi xóa
+  res.json({ message: "User deleted successfully", users }); 
 };
 
 
