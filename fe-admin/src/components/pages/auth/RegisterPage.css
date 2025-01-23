@@ -1,100 +1,64 @@
 
 .register-page {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    min-height: 100vh; 
-    background: linear-gradient(135deg, #ea5837, #a777e3); 
-    padding: 20px; 
-    box-sizing: border-box; 
-  }
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  min-height: 100vh; 
+  background: linear-gradient(135deg, #ea5837, #a777e3); 
+  padding: 20px; 
+  box-sizing: border-box; 
+}
 
-  .register-page .login_register_wrap {
-    width: 100%;
-    max-width: 700px;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    animation: fadeIn 0.5s ease-in-out;
-    padding: 50px; 
-  }
-  
-  .register-page .padding_eight_all {
-    padding: 50px;
-  }
-  
-  .register-page .heading_s1 h3 {
-    text-align: center;
-    color: #333;
-    font-weight: 700;
-    font-size: 32px;
-    margin-bottom: 30px;
-  }
-  
-  .register-page form .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .register-page form .form-control {
-    width: 100%;
-    padding: 15px 20px;
-    font-size: 18px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-  }
-  
-  .register-page form .form-control:focus {
-    border-color: #6e8efb;
-    box-shadow: 0 0 8px rgba(110, 142, 251, 0.5);
-    outline: none;
-  }
-  
-  .register-page .btn-signup {
-    display: inline-block;
-    width: 70%;
-    padding: 12px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #fff;
-    background-color: #ee197c; 
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    text-align: center;
-  }
-  
-  .register-page .form-note {
-    font-size: 16px;
-    margin-top: 20px;
-    color: #555;
-  }
-  
-  .register-page .form-note a {
-    color: #6e8efb;
-    text-decoration: none;
-  }
-  
-  .register-page .form-note a:hover {
-    text-decoration: underline;
-  }
-  .error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-    font-weight: bold;
-  }
+.register-page .login_register_wrap {
+  width: 100%;
+  max-width: 700px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: fadeIn 0.5s ease-in-out;
+  padding: 50px; 
+}
 
-.btn-signup {
+.register-page .padding_eight_all {
+  padding: 50px;
+}
+
+.register-page .heading_s1 h3 {
+  text-align: center;
+  color: #333;
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.register-page form .form-group {
+  margin-bottom: 20px;
+}
+
+.register-page form .form-control {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 18px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.register-page form .form-control:focus {
+  border-color: #6e8efb;
+  box-shadow: 0 0 8px rgba(110, 142, 251, 0.5);
+  outline: none;
+}
+
+.register-page .btn-signup {
   display: inline-block;
-  width: 50%;
+  width: 70%;
   padding: 12px 20px;
   font-size: 1rem;
   font-weight: bold;
   color: #fff;
-  background-color: #dc66b2; 
+  background-color: #ee197c; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -102,12 +66,48 @@
   text-align: center;
 }
 
+.register-page .form-note {
+  font-size: 16px;
+  margin-top: 20px;
+  color: #555;
+}
+
+.register-page .form-note a {
+  color: #6e8efb;
+  text-decoration: none;
+}
+
+.register-page .form-note a:hover {
+  text-decoration: underline;
+}
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.btn-signup {
+display: inline-block;
+width: 50%;
+padding: 12px 20px;
+font-size: 1rem;
+font-weight: bold;
+color: #fff;
+background-color: #dc66b2; 
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: all 0.3s ease-in-out;
+text-align: center;
+}
+
 .btn-signup:hover {
-  background-color: #ed078d; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+background-color: #ed078d; 
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn-login:disabled {
-  background-color: #bdc3c7; 
-  cursor: not-allowed;
+background-color: #bdc3c7; 
+cursor: not-allowed;
 }

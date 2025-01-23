@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import {addUser} from '../redux/userSlice';
 
-// Đăng ký người dùng
+
 export const register = createAsyncThunk(
   "auth/register",
   async (user, { dispatch, rejectWithValue }) => {
@@ -44,6 +44,7 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
     },
+  
   },
   extraReducers: (builder) => {
     builder
